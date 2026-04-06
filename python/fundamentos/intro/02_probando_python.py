@@ -33,3 +33,4 @@ elif dia == "Sábado" or dia == "Domingo":
     print("¡Es fin de semana, disfruta tu tiempo libre!")
 else:
     print("¡Cada día es una nueva oportunidad de aprender!")
+
