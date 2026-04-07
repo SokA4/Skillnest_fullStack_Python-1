@@ -16,4 +16,4 @@ de la lista "Inventario"
 inventario = ["Laptop", "Ratón", "Monitor", "Cable HDMI"]
 inventario.append("impresora")
 inventario.append("Teclado")
-inventario[5]=[(inventario[:3])]
+inventario[5]=[(inventario[:3])]                                   
