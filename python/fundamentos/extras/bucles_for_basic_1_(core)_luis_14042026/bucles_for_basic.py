@@ -107,5 +107,5 @@ while continuar:
         print("\n---Saliendo del programa---")
         continuar = False
     else:
-        print("\n---Opción no válida, por favor intente otra vez---")
-        dkashfjk
+        print("\n---Opción no válida, por favor intente otra vez---__")
+        
