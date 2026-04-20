@@ -59,15 +59,23 @@ def tabladeMultiplicar():
         if resultado % 3 == 0:
             print(f"del {num} solo estos números son divisibles por 3: {resultado}")
 
-""" 6. Sumatoria con Centinela
-Crea un programa que pida números continuamente y los sume. El ciclo debe terminar cuando el usuario ingrese un número negativo. Al final, muestra la suma total (sin incluir el negativo)."""
+# 6. Sumatoria con Centinela
+# Crea un programa que pida números continuamente y los sume. El ciclo debe terminar cuando el usuario ingrese un número negativo. Al final, muestra la suma total (sin incluir el negativo)."""
+
+def sumaCentinela():
+    suma_total = 0
+    while True:
+        n = int(input("Ingrese un número (negativo para salir): "))
+        if n < 0:
+            break
+        suma_total += n
+        print(f"la suma total es: {suma_total}")
+
+# 7. Contador de Vocales
+# Pide al usuario una frase o palabra. Utiliza un bucle para recorrer la cadena y contar cuántas vocales tiene en total."""
 
 
-
-""" 7. Contador de Vocales
-Pide al usuario una frase o palabra. Utiliza un bucle para recorrer la cadena y contar cuántas vocales tiene en total."""
-
-continuar = True
+continuar = True    
 while continuar:
     print("---Ejercicios Python---")
     print("---Ejercicio 1---")
@@ -101,6 +109,9 @@ while continuar:
         clasificadorNum()
     elif opcion == "5":
         print("\n---Ejecutando Ejercicio 5---")
+        tabladeMultiplicar()
+    elif opcion == "6":
+        print("\n---Ejecutando Ejercicio 6---")
         tabladeMultiplicar()
     elif opcion == "0":
         print("\n---Saliendo del programa---")
