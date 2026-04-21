@@ -6,9 +6,9 @@ def buenos_dias(nombre):
    print("Buenos días "+nombre)
 
    buenos_dias("alegría")
-buenos_dias("al amor")
-buenos_dias("a la vida")
-buenos_dias("señor Sol")    
+   buenos_dias("al amor")
+   buenos_dias("a la vida")
+   buenos_dias("señor Sol")    
 
 def buenos_dias(nombre):
    return "Buenos días "+nombre
