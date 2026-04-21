@@ -8,16 +8,20 @@ def total_logros_desbloqueados():
 
 print(total_logros_desbloqueados())
 
-#Variables
+#Variables|Valores
+#Salida: 7
 
 
 # 2. Función que indica la cantidad de mensajes enviados en un grupo de chat de tu juego online.
 def mensajes_en_chat():
     return 2450
 
+#Variables|Valores
+#Salida: 2450
+#
+
 # 3. Intentamos sumar el resultado de una función que no existe al de 'mensajes_en_chat'.
 print(cantidad_de_dias_en_el_anio() + mensajes_en_chat())
-
 
 # Función que podría retornar la temporada en que alcanzaste un rango especial en un MOBA (por ejemplo, 2022 o 2021).
 def temporada_rango_especial():
@@ -26,6 +30,10 @@ def temporada_rango_especial():
 
 print(temporada_rango_especial())
 
+#Variables|Valores
+#Salida: 2022
+#El primer print muestra un error ya que no tiene una variable definida
+#el segundo error se encuentra en el segundo return ya que es estructuralmente inaccesible
 
 # 4. Cantidad de listas de reproducción que sigues en una plataforma de música.
 # Observa que la función 'retorna' 12, pero hay un print(15) después. ¿Se ejecuta?
@@ -35,6 +43,10 @@ def total_playlists():
 
 print(total_playlists())
 
+#Variables|Valores
+#
+#Salida: 12
+#El print muestra error ya que no esta estructuralmente accesible
 
 # 5. Función que muestra el número de episodios vistos de tu serie favorita,
 # pero únicamente imprime su valor, sin retornarlo.
@@ -43,6 +55,11 @@ def episodios_serie_favorita():
 
 x = episodios_serie_favorita()
 print(x)
+
+# Variables|Valores
+# X        | None
+# Salida: 24, 
+#X no imprime nada ya que no tiene return
 
 
 # 6. Función que "suma" los puntos obtenidos al compartir y al dar 'like' en una red social.
@@ -65,6 +82,11 @@ def combinar_tags(tag1, tag2):
 
 print(combinar_tags("#Verano", "#Diversión"))
 
+# Variables|Valores
+# Tag1     | #Verano
+# Tag2     | #Diversión
+#Salida; #Diversión#Verano
+
 
 # 8. Supongamos que 'a' representa el conteo de reproducciones de un video viral.
 # Dependiendo del valor, devuelve un número distinto (p. ej., un ID de categoría).
@@ -78,6 +100,11 @@ def conteo_reproducciones_video():
     return 21  # ¿Se alcanza a ejecutar?
 
 print(conteo_reproducciones_video())
+
+#Variables|Valores
+#A        |560000
+#Salida: 33, 46 
+#No se llega a ejecutar el return que esta estructuralmente inacesible
 
 
 # 9. Duración de una suscripción premium: 365 días (si se cumplen ciertas condiciones) o 12 meses.
@@ -93,6 +120,12 @@ print(duracion_suscripcion(1, 3))
 print(duracion_suscripcion(7, 4))
 print(duracion_suscripcion(7, 4) + duracion_suscripcion(1, 3))
 
+#Variables|Valores
+#A        | 1 - 7 - 7 - 1
+#B        | 3 - 4 - 4 - 3
+#Salida: 365, 12, 377
+#Return 52 no hace nada ya que esta mal estructurado
+
 
 # 10. Suma de propinas que recibes en un juego de simulación (p.ej. "Cafetería Virtual").
 # Nota que hay dos return, pero el segundo no se ejecuta nunca.
@@ -102,6 +135,11 @@ def suma_propinas(a, b):
 
 print(suma_propinas(3, 4))
 
+#Variables|Valores
+#A        | 3
+#B        | 4
+#Salida: 7
+#El return 157 no funciona ya que no esta estructuralmente accesible
 
 # 11. Variable global que cuenta cuántas horas de juego llevas en total.
 # Dentro de la función se define otra variable con el mismo nombre.
@@ -115,6 +153,10 @@ def mostrar_horas_local():
 print(horas_de_juego)
 mostrar_horas_local()
 print(horas_de_juego)
+
+#Variables     |Valores
+#horas_de_juego| 150 - 350 
+#Salida: 150, 350, 350, 150
 
 
 # 12. Similar al anterior, pero la función retorna el valor local 'horas_de_juego'.
@@ -130,6 +172,9 @@ print(horas_de_juego)
 mostrar_horas_local()
 print(horas_de_juego)
 
+#Variables     |Valores
+#horas de juego|150 - 350
+#Salida:150, 350, 150, 350, 150
 
 # 13. Ahora reasignamos la variable global con el valor que retorna la función.
 horas_de_juego = 150
@@ -144,6 +189,9 @@ print(horas_de_juego)
 horas_de_juego = mostrar_horas_local()
 print(horas_de_juego)
 
+#Variables    |Valores
+#hora_de_juego| 150 - 350
+#Salida:150, 350, 150, 150, None, 150 
 
 # 14. Una función que primero muestra la cantidad de seguidores en tu canal, luego llama a otra función para mostrar "Likes".
 def mostrar_seguidores():
@@ -155,6 +203,10 @@ def mostrar_likes():
     print("Likes: 120")
 
 mostrar_seguidores()
+
+#Variables|Valores
+#
+#Salida:Seguidores: 300, Finalizando conteo, likes: 120
 
 
 # 15. Función que muestra "Reproducciones" de un tema musical y recibe un valor de otra función,
