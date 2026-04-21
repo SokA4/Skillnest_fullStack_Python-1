@@ -1,8 +1,12 @@
 
 # Calcula experiencia
 
-def multiplica_por_2():
-    return[]
+def multiplica_por_2(num):
+    result = []
+    for i in range(num + 1):
+        result.append(i * 2)
+    return result
+result1 = 
 multiplica_por_2(5)
 # Debe retornar: [0, 2, 4, 6, 8, 10]
 
