@@ -19,11 +19,11 @@ def puntaje_carlos():
 puntaje_carlos()
 
 # 3. Crear función que reciba "nombre" o "puntaje" e imprima solo esos valores
-def imprimir_valores(datos):
+def imprimir_valores(nombre):
+    input_nombre = input("Ingrese el nombre que desea imprimir: ")
     for dato in datos:
-        print(f"{dato['nombre']} {dato['puntaje']} ")
-imprimir_valores()
-
-
+        if input_nombre == dato["nombre"]:
+                print(f"{dato['nombre']} obtuvo {dato['puntaje']} puntos")
+imprimir_valores("nombre")
 
 
