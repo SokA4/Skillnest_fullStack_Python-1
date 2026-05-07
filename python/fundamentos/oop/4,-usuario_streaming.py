@@ -26,8 +26,9 @@ class UsuarioStreaming:
 
    def agregar_a_lista(self, titulo):
         """Agrega un contenido a la lista de reproducción del usuario."""
-        self.lista_reproduccion = titulo
-        titulo = input(f"Agregando '{titulo}' a la lista de reproducción de {self.nombre}. Presiona Enter para continuar...")
+        self.lista_reproduccion.append(titulo)
+        titulo = input("Ingrese el título que desea agregar a la lista de reproducción: ")
+        print(f"{titulo} ha sido agregado a la lista de reproducción de {self.nombre}.")
 
    def ver_contenido(self, titulo):
        """Simula que el usuario reproduce un contenido."""
@@ -36,7 +37,8 @@ class UsuarioStreaming:
    def cambiar_suscripcion(self, nueva_suscripcion):
        """Cambia el tipo de suscripción del usuario."""
        pass
- 
+   
+
 
    def mostrar_info_usuario(self):
        """Muestra la información del usuario y su lista de reproducción."""
