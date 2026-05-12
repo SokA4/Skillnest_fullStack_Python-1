@@ -25,31 +25,34 @@ class SuscripcionStreaming:
 
     def realizar_pago(self, monto):
         """Reduce el saldo pendiente según el monto pagado."""
-        reducir_monto = min(monto, self.saldo_pendiente)
-        self.saldo_pendiente -= reducir_monto
+        self.saldo_pendiente -= monto
+        print(f"Pago realizado: ${monto:.2f}. Saldo pendiente: ${self.saldo_pendiente:.2f}.")
 
     def cambiar_suscripcion(self, nuevo_tipo):
         """Cambia el tipo de suscripción y actualiza el costo mensual."""
         if nuevo_tipo in self.costos_suscripcion:
             self.tipo_suscripcion = nuevo_tipo
+            self.costo_mensual = self.costos_suscripcion[nuevo_tipo]
             self.saldo_pendiente = self.costos_suscripcion[nuevo_tipo]
+            print(f"{self.usuario} ha cambiado a {nuevo_tipo}.")
+        else:
+            print(f"Error: '{nuevo_tipo}' no es un tipo de suscripción válido.")
 
     def ver_contenido_exclusivo(self):
         """Permite ver contenido exclusivo según el tipo de suscripción."""
-
         if self.tipo_suscripcion == "Gratis":
-            return "No tienes acceso a contenido exclusivo."
+            print("Acceso denegado. Suscríbete para ver contenido exclusivo.")
 
         elif self.tipo_suscripcion == "Estándar":
-            return "Acceso a contenido exclusivo estándar."
+            print("Acceso a contenido exclusivo limitado.")
 
         elif self.tipo_suscripcion == "Premium":
-            return "Acceso a todo el contenido exclusivo."
+            print("Acceso completo a contenido exclusivo.")
        
 
     def mostrar_info_suscripcion(self):
         """Muestra la información de la suscripción del usuario."""
-        return (
+        print(
             f"Usuario: {self.usuario}, "
             f"Tipo de Suscripción: {self.tipo_suscripcion}, "
             f"Costo Mensual: {self.costo_mensual}, "
@@ -65,15 +68,22 @@ Haz que el primer usuario intente ver contenido exclusivo, mejore su suscripció
 Haz que el segundo usuario vea contenido exclusivo, cambie su suscripción a Premium y pague dos veces.
 Haz que el tercer usuario intente pagar una cantidad menor a su saldo pendiente y vea contenido exclusivo."""
 
-print(Dany.ver_contenido_exclusivo())
-Dany.cambiar_suscripcion("Premium")
-print(Dany.mostrar_info_suscripcion())
-Dany.realizar_pago(10.99)
+print("\n--- Usuario 1: Dany intenta ver contenido exclusivo, mejorar su suscripción y pagar su saldo ---")
+Dany.ver_contenido_exclusivo()
+Dany.cambiar_suscripcion("Estándar")
+Dany.realizar_pago(5.99)
 
-print(Luis.ver_contenido_exclusivo())
+print("\n--- Usuario 2: Luis ve contenido exclusivo, cambia su suscripción a Premium y paga dos veces ---")
+Luis.ver_contenido_exclusivo()
 Luis.cambiar_suscripcion("Premium")
-print(Luis.mostrar_info_suscripcion())
 Luis.realizar_pago(10.99)
+Luis.realizar_pago(6.98)
 
-print(Constanza.mostrar_info_suscripcion())
-Constanza.realizar_pago(0.99)
+print("\n--- Usuario 3: Constanza intenta pagar una cantidad menor a su saldo pendiente y ve contenido exclusivo ---")
+Constanza.realizar_pago(0.50)
+Constanza.ver_contenido_exclusivo()
+
+print("\n--- Información de suscripción de cada usuario ---")
+Dany.mostrar_info_suscripcion()
+Luis.mostrar_info_suscripcion()
+Constanza.mostrar_info_suscripcion()
