@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BookHub{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% if session.get('usuario_id') %}
+    <nav class="navbar">
+        <a href="{{ url_for('libros.mis_libros') }}" class="nav-brand">
+             BookHub
+        </a>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('libros.mis_libros') }}">Mis Libros</a></li>
+            <li><a href="{{ url_for('favoritos.ver_favoritos') }}">Mis Favoritos</a></li>
+            <li class="user-badge">Bienvenido, {{ session.get('usuario_nombre') }}</li>
+            <li><a href="{{ url_for('auth.logout') }}" class="btn btn-danger" style="padding: 0.3rem 0.8rem;">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+    {% endif %}
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

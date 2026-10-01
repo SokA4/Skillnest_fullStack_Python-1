@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ libro.titulo }} - BookHub{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(category_filter=['exito', 'error']) %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert {% if 'favoritos' in message %}alert-exito{% else %}alert-error{% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<div class="detail-card">
+    <div class="book-cover-placeholder"></div>
+    <div class="book-info">
+        <h2>{{ libro.titulo }}</h2>
+        <div class="book-meta">
+            <p><strong>Autor:</strong> {{ libro.autor }}</p>
+            <p><strong>Género:</strong> {{ libro.genero }}</p>
+            <p><strong>Publicado por:</strong> {{ libro.publicado_por }}</p>
+            <p><strong>Fecha de publicación:</strong> {{ libro.fecha_publicacion }}</p>
+            <p><strong>Favoritos:</strong>  {{ libro.total_favoritos }}</p>
+        </div>
+
+        {% if es_favorito %}
+            <form action="{{ url_for('favoritos.quitar_favorito', libro_id=libro.id) }}" method="POST">
+                <button type="submit" class="btn btn-danger">Quitar de Favoritos</button>
+            </form>
+        {% else %}
+            <form action="{{ url_for('favoritos.agregar_favorito', libro_id=libro.id) }}" method="POST">
+                <button type="submit" class="btn btn-accent">a Agregar a Favoritos</button>
+            </form>
+        {% endif %}
+
+        <div class="book-description">
+            <h4 style="margin-bottom: 0.5rem;">Descripción:</h4>
+            <p>{{ libro.descripcion }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="users-list">
+    <h3>Usuarios que agregaron este libro a favoritos ({{ usuarios_favoritos|length }})</h3>
+    {% if usuarios_favoritos %}
+        <ul>
+            {% for usuario in usuarios_favoritos %}
+                <li> {{ usuario.nombre }} {{ usuario.apellido }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p style="margin-top: 0.5rem; color: var(--text-muted);">Nadie ha agregado este libro a sus favoritos aún.</p>
+    {% endif %}
+</div>
+
+<div style="margin-top: 1.5rem;">
+    <a href="{{ url_for('libros.mis_libros') }}" class="btn-link">← Volver a Mis Libros</a>
+</div>
+{% endblock %}

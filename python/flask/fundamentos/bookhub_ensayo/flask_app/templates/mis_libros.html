@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Mis Libros - BookHub{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(category_filter=['exito', 'error']) %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert {% if 'éxito' in message or 'exitosamente' in message or 'correctamente' in message %}alert-exito{% else %}alert-error{% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<div class="header-action">
+    <h2>Mis Libros</h2>
+    <a href="{{ url_for('libros.nuevo_libro') }}" class="btn btn-accent">+ Nuevo Libro</a>
+</div>
+
+<div class="table-card">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Género</th>
+                <th>Fecha</th>
+                <th>Favoritos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if mis_libros %}
+                {% for libro in mis_libros %}
+                <tr>
+                    <td><strong>{{ libro.titulo }}</strong></td>
+                    <td>{{ libro.autor }}</td>
+                    <td>{{ libro.genero }}</td>
+                    <td>{{ libro.fecha_publicacion }}</td>
+                    <td> {{ libro.total_favoritos }}</td>
+                    <td class="actions-cell">
+                        <a href="{{ url_for('libros.detalle_libro', id=libro.id) }}" class="btn-link">Ver</a>
+                        <a href="{{ url_for('libros.editar_libro', id=libro.id) }}" class="btn-link">Editar</a>
+                        <form action="{{ url_for('libros.eliminar_libro', id=libro.id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este libro?');" style="display:inline;">
+                            <button type="submit" class="btn-link" style="color: var(--danger); cursor: pointer;">Borrar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6" style="text-align: center; color: var(--text-muted);">No has publicado libros aún.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<h2 style="margin-bottom: 1.5rem;">Libros de la Comunidad</h2>
+
+<div class="table-card">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Género</th>
+                <th>Publicado por</th>
+                <th>Favoritos</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if libros_comunidad %}
+                {% for libro in libros_comunidad %}
+                <tr>
+                    <td><strong>{{ libro.titulo }}</strong></td>
+                    <td>{{ libro.autor }}</td>
+                    <td>{{ libro.genero }}</td>
+                    <td>{{ libro.publicado_por }}</td>
+                    <td> {{ libro.total_favoritos }}</td>
+                    <td>
+                        <a href="{{ url_for('libros.detalle_libro', id=libro.id) }}" class="btn-link">Ver</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6" style="text-align: center; color: var(--text-muted);">No hay libros de otros usuarios disponibles.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

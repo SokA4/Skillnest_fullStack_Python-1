@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- ENCABEZADO SUPERIOR -->
+<div style="text-align: center; margin-top: 1rem; margin-bottom: 2rem;">
+    <h1 style="font-size: 2.5rem; color: var(--primary); font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 12px;">
+        📖 BookHub
+    </h1>
+    <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 0.4rem;">
+        Comparte, descubre y comenta libros
+    </p>
+</div>
+
+<!-- MENSAJES FLASH / VALIDACIONES DE ERROR -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div style="max-width: 850px; margin: 0 auto 1.5rem auto;">
+            {% for category, message in messages %}
+                <div class="alert alert-error">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<!-- CONTENEDOR UNIFICADO CON LAS DOS TARJETAS EN PARALELO -->
+<div class="auth-wrapper">
+
+    <!-- TARJETA 1: CREAR CUENTA -->
+    <div class="auth-card">
+        <h2>Crear Cuenta</h2>
+        
+        <form action="/procesar_registro" method="POST">
+            <div class="form-group row-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" required>
+            </div>
+            
+            <div class="form-group row-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" name="apellido" class="form-control" required>
+            </div>
+            
+            <div class="form-group row-group">
+                <label for="email_reg">E-mail</label>
+                <input type="email" id="email_reg" name="email" class="form-control" required>
+            </div>
+            
+            <div class="form-group row-group">
+                <label for="password_reg">Contraseña</label>
+                <input type="password" id="password_reg" name="password" class="form-control" required>
+            </div>
+            
+            <div class="form-group row-group">
+                <label for="confirm_password">Confirmar Contraseña</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Registrarse</button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 1.2rem;">
+            <a href="#login-box" class="btn-link" style="font-size: 0.85rem;">¿Ya tienes cuenta? Inicia sesión</a>
+        </div>
+    </div>
+
+    <!-- TARJETA 2: INICIAR SESIÓN -->
+    <div class="auth-card" id="login-box">
+        <h2>Iniciar Sesión</h2>
+        
+        <form action="/procesar_login" method="POST">
+            <div class="form-group">
+                <label for="email_login">E-mail</label>
+                <input type="email" id="email_login" name="email" class="form-control" required>
+            </div>
+            
+            <div class="form-group" style="margin-top: 1.2rem;">
+                <label for="password_login">Contraseña</label>
+                <input type="password" id="password_login" name="password" class="form-control" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="margin-top: 2rem;">Iniciar Sesión</button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 1.2rem;">
+            <a href="#nombre" class="btn-link" style="font-size: 0.85rem;">¿No tienes cuenta? Regístrate</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
